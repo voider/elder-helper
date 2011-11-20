@@ -4,9 +4,16 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello" />
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="147dp" >
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/approveButton"
+        android:layout_width="match_parent"
+        android:layout_height="151dp"
+        android:text="Please approve" android:textSize="40dp"/>
 
 </LinearLayout>
