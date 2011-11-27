@@ -2,6 +2,8 @@ package com.elderhelper;
 
 import java.util.Calendar;
 
+import com.elderhelper.utils.AlarmCreator;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -12,19 +14,10 @@ import android.widget.Toast;
 
 public class OnBootBroadCastReceiver extends BroadcastReceiver {
 
-  private static final int REQUEST_ID = 221; // This value is not really used
-
   @Override
-  public void onReceive(Context context, Intent arg1) {
+  public void onReceive(Context context, Intent intent) {
     try {
-      Toast.makeText(context, "Setting alarm", Toast.LENGTH_SHORT).show();
-      AlarmManager mgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-      Intent intent = new Intent(context,AlarmReceiver.class);
-      PendingIntent pendingIntent = PendingIntent.getBroadcast(context, REQUEST_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-      Calendar calendar = Calendar.getInstance();
-      calendar.add(Calendar.MINUTE,1);
-      long wakeupTime = calendar.getTimeInMillis();
-      mgr.set(AlarmManager.RTC_WAKEUP,wakeupTime,pendingIntent);
+      new AlarmCreator(context).scheduleInFuture(Calendar.MINUTE, 5,AlarmReceiver.class);
     } catch (Exception ex) {
       Log.e("elder helper ",ex.getMessage(),ex);
     }
