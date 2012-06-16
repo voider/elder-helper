@@ -2,7 +2,7 @@ package com.elderhelper;
 
 import java.util.Calendar;
 
-import com.elderhelper.utils.AlarmCreator;
+import com.elderhelper.utils.alarms.AlarmCreator;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
