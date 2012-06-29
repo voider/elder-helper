@@ -3,21 +3,16 @@ package com.elderhelper;
 import java.io.File;
 import java.io.IOException;
 
-import com.elderhelper.utils.alarms.sound.MediaPlayerPool;
-import com.elderhelper.utils.alarms.sound.MediaPlayerPool.LoadMethod;
-
 import android.app.Activity;
-import android.content.Context;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import com.elderhelper.utils.notification.NotificationHelper;
+import com.elderhelper.utils.sound.MediaPlayerPool;
 
 public class ElderhelperActivity extends Activity {
   
@@ -30,8 +25,7 @@ public class ElderhelperActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        Button approveButton = (Button)findViewById(R.id.approveButton);
+        /*
         //mediaPlayer = new MediaPlayer();
           
         musicDir = null;
@@ -48,8 +42,12 @@ public class ElderhelperActivity extends Activity {
         } else {
           Log.e("elder helper", "The sound files of the application must exist in your device music directory. Make sure the directory can be read by the application. ");
         }
+        mediaPlayerPool.play();
+        */
         
         //mediaPlayer.set
+        setContentView(R.layout.main);
+        Button approveButton = (Button)findViewById(R.id.approveButton);
         approveButton.setOnClickListener(new OnClickListener() {
           
           
@@ -58,6 +56,15 @@ public class ElderhelperActivity extends Activity {
            
             //mediaPlayer.reset();
             try {
+              
+              NotificationHelper helper = new NotificationHelper(getApplicationContext());
+              helper.set("ElderHelper", "Took medicine for Monday morning", ElderhelperActivity.class, Constants.NOTIFICATION_ID, R.drawable.elderhelper);
+              ElderhelperActivity.this.finish();
+              
+              //NotificationHelper helper = new NotificationHelper(getApplicationContext());
+              //helper.set("ElderHelper", "Launching elder helper", ElderhelperActivity.class, Constants.NOTIFICATION_ID, R.drawable.elderhelper);
+              
+              
               //mediaPlayer.setDataSource(songFile.getAbsolutePath());
               //mediaPlayer.prepare();
               //mediaPlayer.start();
@@ -70,9 +77,10 @@ public class ElderhelperActivity extends Activity {
               mediaPlayer.start();
               while (mediaPlayer.isPlaying());
               mediaPlayer.release();
+              
               */
-              mediaPlayerPool.play();
-
+             // ElderhelperActivity.this.finish();
+         
             } catch (IllegalArgumentException e) {
               // TODO Auto-generated catch block
               e.printStackTrace();

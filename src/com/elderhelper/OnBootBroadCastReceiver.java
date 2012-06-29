@@ -17,7 +17,10 @@ public class OnBootBroadCastReceiver extends BroadcastReceiver {
   @Override
   public void onReceive(Context context, Intent intent) {
     try {
-      new AlarmCreator(context).scheduleInFuture(Calendar.MINUTE, 5,AlarmReceiver.class);
+      //new AlarmCreator(context).scheduleInFuture(Calendar.MINUTE, 5,AlarmReceiver.class);
+      
+      Intent serviceIntent = new Intent(Constants.SERVICE_ACTION);
+      context.startService(serviceIntent);
     } catch (Exception ex) {
       Log.e("elder helper ",ex.getMessage(),ex);
     }
